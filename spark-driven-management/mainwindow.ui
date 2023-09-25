@@ -32,129 +32,166 @@
       <property name="minimumSize">
        <size>
         <width>0</width>
-        <height>40</height>
+        <height>100</height>
        </size>
       </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_5">
+      <layout class="QVBoxLayout" name="verticalLayout_4">
        <item>
-        <widget class="QLabel" name="label">
-         <property name="text">
-          <string>星火驱动管理</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <spacer name="horizontalSpacer_11">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>596</width>
-           <height>19</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <layout class="QVBoxLayout" name="verticalLayout_3">
          <item>
-          <widget class="QPushButton" name="pushButton">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>25</width>
-             <height>25</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>25</width>
-             <height>25</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>三</string>
-           </property>
-          </widget>
+          <layout class="QHBoxLayout" name="horizontalLayout_5">
+           <item>
+            <widget class="QLabel" name="label">
+             <property name="text">
+              <string>星火驱动管理</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_3">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_2">
+             <property name="sizeConstraint">
+              <enum>QLayout::SetDefaultConstraint</enum>
+             </property>
+             <item>
+              <widget class="QPushButton" name="pushButton">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>25</width>
+                 <height>25</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>25</width>
+                 <height>25</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>三</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_9">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>25</width>
+                 <height>25</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>25</width>
+                 <height>25</height>
+                </size>
+               </property>
+               <property name="sizeIncrement">
+                <size>
+                 <width>0</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="baseSize">
+                <size>
+                 <width>0</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>_</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_10">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>25</width>
+                 <height>25</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>25</width>
+                 <height>25</height>
+                </size>
+               </property>
+               <property name="sizeIncrement">
+                <size>
+                 <width>0</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="baseSize">
+                <size>
+                 <width>0</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>X</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_9">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>25</width>
-             <height>25</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>25</width>
-             <height>25</height>
-            </size>
-           </property>
-           <property name="sizeIncrement">
-            <size>
-             <width>0</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="baseSize">
-            <size>
-             <width>0</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>_</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pushButton_10">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>25</width>
-             <height>25</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>25</width>
-             <height>25</height>
-            </size>
-           </property>
-           <property name="sizeIncrement">
-            <size>
-             <width>0</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="baseSize">
-            <size>
-             <width>0</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>X</string>
-           </property>
+          <widget class="QWidget" name="widget_3" native="true">
+           <layout class="QHBoxLayout" name="horizontalLayout_7">
+            <item>
+             <widget class="QPushButton" name="pushButton_2">
+              <property name="text">
+               <string>返回</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer_7">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
           </widget>
          </item>
         </layout>
@@ -165,7 +202,7 @@
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -513,7 +550,101 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="page_2"/>
+      <widget class="QWidget" name="page_2">
+       <widget class="QTabWidget" name="tabWidget">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>801</width>
+          <height>411</height>
+         </rect>
+        </property>
+        <property name="currentIndex">
+         <number>1</number>
+        </property>
+        <widget class="QWidget" name="tab1">
+         <attribute name="title">
+          <string>驱动安装</string>
+         </attribute>
+        </widget>
+        <widget class="QWidget" name="tab_2">
+         <attribute name="title">
+          <string>驱动备份</string>
+         </attribute>
+        </widget>
+        <widget class="QWidget" name="tab_3">
+         <attribute name="title">
+          <string>驱动卸载</string>
+         </attribute>
+        </widget>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="page_3">
+       <widget class="QTabWidget" name="tabWidget_2">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>801</width>
+          <height>411</height>
+         </rect>
+        </property>
+        <property name="currentIndex">
+         <number>0</number>
+        </property>
+        <widget class="QWidget" name="tab">
+         <attribute name="title">
+          <string>硬件信息</string>
+         </attribute>
+        </widget>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="page_4">
+       <widget class="QTabWidget" name="tabWidget_3">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>801</width>
+          <height>411</height>
+         </rect>
+        </property>
+        <property name="currentIndex">
+         <number>0</number>
+        </property>
+        <widget class="QWidget" name="tab_4">
+         <attribute name="title">
+          <string>显卡驱动</string>
+         </attribute>
+        </widget>
+        <widget class="QWidget" name="tab_5">
+         <attribute name="title">
+          <string>网卡驱动</string>
+         </attribute>
+        </widget>
+        <widget class="QWidget" name="tab_6">
+         <attribute name="title">
+          <string>声卡驱动</string>
+         </attribute>
+        </widget>
+        <widget class="QWidget" name="tab_7">
+         <attribute name="title">
+          <string>摄像头驱动</string>
+         </attribute>
+        </widget>
+        <widget class="QWidget" name="tab_8">
+         <attribute name="title">
+          <string>打印机驱动</string>
+         </attribute>
+        </widget>
+        <widget class="QWidget" name="tab_9">
+         <attribute name="title">
+          <string>内核切换</string>
+         </attribute>
+        </widget>
+       </widget>
+      </widget>
      </widget>
     </item>
    </layout>
