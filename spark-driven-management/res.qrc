@@ -1,5 +1,9 @@
 <RCC>
     <qresource prefix="/">
         <file>res/setting.svg</file>
+        <file>res/drivelist.png</file>
+        <file>res/information.png</file>
+        <file>res/search.png</file>
+        <file>res/logo.png</file>
     </qresource>
 </RCC>
