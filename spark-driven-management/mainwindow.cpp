@@ -13,7 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
     QPalette palette_2;
     QColor backgroundColor_2("#FFFFFF");
     palette_2.setColor(QPalette::Background,backgroundColor_2);
-    ui->widget->setPalette(palette_2);
+//    ui->widget->setPalette(palette_2);
 
 }
 
