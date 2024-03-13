@@ -9,6 +9,7 @@ class DriverDownloader : public QWidget
 public:
     explicit DriverDownloader(QWidget *parent = nullptr);
     void executeCommand();
+    QStringList deviceIDs;
 signals:
 
 public slots:

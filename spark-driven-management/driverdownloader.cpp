@@ -27,6 +27,13 @@ void DriverDownloader::executeCommand()
 
     // 从进程中读取输出
     QString result = process.readAllStandardOutput();
-    qDebug()<<result;
+    qDebug()<<result;    // 使用正则表达式提取设备ID
+    QRegExp regex("\\[(\\w+):(\\w+)\\]");
+    int pos = 0;
+    while ((pos = regex.indexIn(result, pos)) != -1) {
+        deviceIDs << regex.cap(1) + ":" + regex.cap(2);
+        pos += regex.matchedLength();
+    }
+    qDebug()<<deviceIDs;
 
 }
