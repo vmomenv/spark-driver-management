@@ -105,3 +105,15 @@ void MainWindow::on_minimizeButton_clicked()
 {
     this->showMinimized();
 }
+
+void MainWindow::on_backButton_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+void MainWindow::on_pushButton_5_clicked()
+{
+  ui->stackedWidget->setCurrentIndex(1);
+  DriverDownloader *w = new DriverDownloader(this);
+
+}

@@ -11,11 +11,13 @@ CONFIG += c++11
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
-    deviceinfo.cpp
+    deviceinfo.cpp \
+    driverdownloader.cpp
 
 HEADERS += \
     mainwindow.h \
-    deviceinfo.h
+    deviceinfo.h \
+    driverdownloader.h
 
 FORMS += \
     info.ui \
