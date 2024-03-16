@@ -1,6 +1,7 @@
 #include "driverdownloader.h"
 #include "driverdownloader.h"
 
+#include <QEventLoop>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QListWidget>
@@ -43,27 +44,48 @@ void DriverDownloader::executeCommand()
     getFilesByDeviceIds();
 
 }
+
 QString DriverDownloader::getFilesByDeviceIds()
 {
     QList<QString> deviceIDs = this->deviceIDs;
-    manager = new QNetworkAccessManager(this);
+    this->manager = new QNetworkAccessManager(this); // 将 manager 设置为成员变量
     QString responseData;
+    QEventLoop loop;
+
+    // 记录未完成的请求数量
+    int pendingRequests = deviceIDs.size();
+
     for (const QString &deviceID : deviceIDs) {
         QUrl requestUrl("http://127.0.0.1:8000/api/FindFilesByHardwareId?driver_type=pci&device_id=" + deviceID);
         QNetworkRequest request(requestUrl);
-        QNetworkReply *reply = manager->get(request);
-        connect(reply, &QNetworkReply::finished, this, [this, &responseData, reply]() {
+        QNetworkReply *reply = this->manager->get(request); // 使用 this->manager
+
+        // 当请求完成时触发该 lambda 表达式
+        connect(reply, &QNetworkReply::finished, this, [&responseData, reply, &pendingRequests, &loop]() {
             if (reply->error() == QNetworkReply::NoError) {
                 QByteArray response_data = reply->readAll();
-                // 将响应数据存储在中间变量中
-                qDebug()<<response_data;
                 responseData += QString(response_data);
             } else {
                 qDebug() << "Error:" << reply->errorString();
             }
             reply->deleteLater();
-        });
 
+            // 每当一个请求完成时，将未完成的请求数量减一
+            pendingRequests--;
+
+            // 如果所有请求都已完成，则退出事件循环
+            if (pendingRequests == 0) {
+                loop.quit();
+            }
+        });
     }
-//     return responseData;
+
+    // 等待所有请求完成
+    loop.exec();
+
+    // 在所有请求完成后输出responseData
+    responseData.remove(QRegExp("\\[\\]"));
+    qDebug() << "All responses received: " << responseData;
+
+    return responseData;
 }
