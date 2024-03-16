@@ -11,13 +11,13 @@ class DriverDownloader : public QWidget
 public:
     explicit DriverDownloader(QWidget *parent = nullptr);
     void executeCommand();
-    void fetchDriverInfo();
-    void onDriverInfoReceived(QNetworkReply *reply);
-    void processDriverInfo(const QJsonArray &driverInfoArray);
+
+    QString getFilesByDeviceIds();
 private:
     QStringList deviceIDs;
     QJsonArray intermediateJsonArray;
-    QNetworkAccessManager *networkManager;
+    QNetworkAccessManager *manager;
+    QString responseData;
 signals:
     void driverInfoReceived(const QJsonArray &driverInfoArray);
 

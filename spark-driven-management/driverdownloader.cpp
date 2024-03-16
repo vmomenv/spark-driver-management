@@ -40,52 +40,30 @@ void DriverDownloader::executeCommand()
         pos += regex.matchedLength();
     }
     qDebug()<<deviceIDs;
+    getFilesByDeviceIds();
 
 }
-void DriverDownloader::fetchDriverInfo()
+QString DriverDownloader::getFilesByDeviceIds()
 {
-    QNetworkAccessManager *manager = new QNetworkAccessManager(this);
-
-    for (const QString &deviceId : deviceIDs) {
-        QUrl apiUrl("http://127.0.0.1:8000/api/FindFilesByHardwareId/");
-        QUrlQuery query;
-        query.addQueryItem("driver_type", "pci");
-        query.addQueryItem("device_id", deviceId);
-        apiUrl.setQuery(query);
-
-        QNetworkRequest request(apiUrl);
+    QList<QString> deviceIDs = this->deviceIDs;
+    manager = new QNetworkAccessManager(this);
+    QString responseData;
+    for (const QString &deviceID : deviceIDs) {
+        QUrl requestUrl("http://127.0.0.1:8000/api/FindFilesByHardwareId?driver_type=pci&device_id=" + deviceID);
+        QNetworkRequest request(requestUrl);
         QNetworkReply *reply = manager->get(request);
-
-        connect(reply, &QNetworkReply::finished, this, [this, reply]() {
-            onDriverInfoReceived(reply);
+        connect(reply, &QNetworkReply::finished, this, [this, &responseData, reply]() {
+            if (reply->error() == QNetworkReply::NoError) {
+                QByteArray response_data = reply->readAll();
+                // 将响应数据存储在中间变量中
+                qDebug()<<response_data;
+                responseData += QString(response_data);
+            } else {
+                qDebug() << "Error:" << reply->errorString();
+            }
+            reply->deleteLater();
         });
+
     }
-}
-void DriverDownloader::onDriverInfoReceived(QNetworkReply *reply)
-{
-    if (reply->error() == QNetworkReply::NoError) {
-        QByteArray data = reply->readAll();
-        QJsonDocument jsonDoc = QJsonDocument::fromJson(data);
-        QJsonArray driverInfoArray = jsonDoc.array();
-
-        // 追加到中间变量
-        intermediateJsonArray.append(driverInfoArray);
-
-        // 检查是否有数据，如果有则发送信号
-        if (!driverInfoArray.isEmpty()) {
-            emit driverInfoReceived(intermediateJsonArray);
-        }
-    } else {
-        qDebug() << "Network error:" << reply->errorString();
-    }
-
-    reply->deleteLater();
-}
-void DriverDownloader::processDriverInfo(const QJsonArray &driverInfoArray)
-{
-    // 处理驱动信息，你可以在这里做进一步的操作
-    qDebug() << "Received driver info:" << driverInfoArray;
-
-    // 清空中间变量，准备下一次的数据
-    intermediateJsonArray = QJsonArray();
+//     return responseData;
 }
