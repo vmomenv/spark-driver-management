@@ -1,14 +1,20 @@
 #ifndef DRIVERLIST_H
 #define DRIVERLIST_H
 
+#include <QJsonDocument>
 #include <QWidget>
-
-class driverList : public QWidget
+#include<QJsonObject>
+#include <QVBoxLayout>
+class DriverList : public QWidget
 {
     Q_OBJECT
 public:
-    explicit driverList(QWidget *parent = nullptr);
+    explicit DriverList(QWidget *parent = nullptr);
 
+    void infoWidget(QJsonDocument json);
+    QJsonDocument json;
+//    void infoWidget(const QJsonObject &deviceObject, QWidget *listWidget);
+    void infoWidget(const QJsonObject &deviceObject, QVBoxLayout *listLayout);
 signals:
 
 public slots:

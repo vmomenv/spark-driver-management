@@ -117,8 +117,10 @@ void MainWindow::on_backButton_clicked()
 
 void MainWindow::on_pushButton_5_clicked() {
     ui->stackedWidget->setCurrentIndex(1);
-    driverList *listWidget =new driverList(this);
+    DriverList *listWidget =new DriverList(this);
     QVBoxLayout *layout = new QVBoxLayout(ui->tabWidget);
+//    DriverDownloader *jsoninfo=new DriverDownloader(this);
+//    listWidget->infoWidget(jsoninfo->getFilesByDeviceIds());
     layout->addWidget(listWidget);
     ui->tab1->setLayout(layout);
 }
