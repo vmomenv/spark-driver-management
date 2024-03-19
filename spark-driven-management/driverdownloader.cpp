@@ -11,7 +11,7 @@
 #include <QPushButton>
 #include <QUrlQuery>
 #include <QVBoxLayout>
-
+#include <QJsonObject>
 DriverDownloader::DriverDownloader(QWidget *parent) : QWidget(parent)
 {
     executeCommand();
@@ -41,30 +41,43 @@ void DriverDownloader::executeCommand()
         pos += regex.matchedLength();
     }
     qDebug()<<deviceIDs;
-    getFilesByDeviceIds();
+
 
 }
 
-QString DriverDownloader::getFilesByDeviceIds()
-{
+QJsonDocument DriverDownloader::getFilesByDeviceIds() {
     QList<QString> deviceIDs = this->deviceIDs;
     this->manager = new QNetworkAccessManager(this); // 将 manager 设置为成员变量
-    QString responseData;
+    QJsonArray jsonArray;
     QEventLoop loop;
 
     // 记录未完成的请求数量
     int pendingRequests = deviceIDs.size();
 
+    // 构建请求的 URL
+    auto buildRequestUrl = [](const QString &deviceID) -> QUrl {
+        QUrl url("http://127.0.0.1:8000/api/FindFilesByHardwareId");
+        QUrlQuery query;
+        query.addQueryItem("driver_type", "pci");
+        query.addQueryItem("device_id", deviceID);
+        url.setQuery(query);
+        return url;
+    };
+
     for (const QString &deviceID : deviceIDs) {
-        QUrl requestUrl("http://127.0.0.1:8000/api/FindFilesByHardwareId?driver_type=pci&device_id=" + deviceID);
+        QUrl requestUrl = buildRequestUrl(deviceID);
         QNetworkRequest request(requestUrl);
         QNetworkReply *reply = this->manager->get(request); // 使用 this->manager
 
         // 当请求完成时触发该 lambda 表达式
-        connect(reply, &QNetworkReply::finished, this, [&responseData, reply, &pendingRequests, &loop]() {
+        connect(reply, &QNetworkReply::finished, this, [&jsonArray, reply, &pendingRequests, &loop]() {
             if (reply->error() == QNetworkReply::NoError) {
-                QByteArray response_data = reply->readAll();
-                responseData += QString(response_data);
+                QByteArray responseData = reply->readAll();
+                QJsonDocument jsonDoc = QJsonDocument::fromJson(responseData);
+                QJsonArray smallArray = jsonDoc.array();
+                if (!smallArray.isEmpty()) {
+                    jsonArray.append(smallArray);
+                }
             } else {
                 qDebug() << "Error:" << reply->errorString();
             }
@@ -83,9 +96,8 @@ QString DriverDownloader::getFilesByDeviceIds()
     // 等待所有请求完成
     loop.exec();
 
-    // 在所有请求完成后输出responseData
-    responseData.remove(QRegExp("\\[\\]"));
-    qDebug() << "All responses received: " << responseData;
+    // 将所有 JSON 数据组合成一个大 JSON
+    QJsonDocument finalJson(jsonArray);
 
-    return responseData;
+    return finalJson;
 }

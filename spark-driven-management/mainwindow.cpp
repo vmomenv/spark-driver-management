@@ -1,7 +1,9 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "deviceinfo.h"
-
+#include "driverlist.h"
+#include<QJsonObject>
+#include<QJsonDocument>
 #include <QDesktopWidget>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -111,9 +113,12 @@ void MainWindow::on_backButton_clicked()
     ui->stackedWidget->setCurrentIndex(0);
 }
 
-void MainWindow::on_pushButton_5_clicked()
-{
-  ui->stackedWidget->setCurrentIndex(1);
-  DriverDownloader *w = new DriverDownloader(this);
 
+
+void MainWindow::on_pushButton_5_clicked() {
+    ui->stackedWidget->setCurrentIndex(1);
+    driverList *listWidget =new driverList(this);
+    QVBoxLayout *layout = new QVBoxLayout(ui->tabWidget);
+    layout->addWidget(listWidget);
+    ui->tab1->setLayout(layout);
 }

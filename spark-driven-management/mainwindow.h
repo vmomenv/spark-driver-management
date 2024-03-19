@@ -31,6 +31,7 @@ private slots:
 
     void on_pushButton_5_clicked();
 
+
 private:
     Ui::MainWindow *ui;
     bool isMousePressed;

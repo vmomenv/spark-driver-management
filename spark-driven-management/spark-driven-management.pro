@@ -12,12 +12,14 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     deviceinfo.cpp \
-    driverdownloader.cpp
+    driverdownloader.cpp \
+    driverlist.cpp
 
 HEADERS += \
     mainwindow.h \
     deviceinfo.h \
-    driverdownloader.h
+    driverdownloader.h \
+    driverlist.h
 
 FORMS += \
     info.ui \

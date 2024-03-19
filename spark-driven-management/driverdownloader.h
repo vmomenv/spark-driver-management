@@ -5,6 +5,7 @@
 #include<QDebug>
 #include <QNetworkReply>
 #include <QJsonArray>
+#include<QDebug>
 class DriverDownloader : public QWidget
 {
     Q_OBJECT
@@ -12,7 +13,7 @@ public:
     explicit DriverDownloader(QWidget *parent = nullptr);
     void executeCommand();
 
-    QString getFilesByDeviceIds();
+    QJsonDocument getFilesByDeviceIds();
 private:
     QStringList deviceIDs;
     QJsonArray intermediateJsonArray;
