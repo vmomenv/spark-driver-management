@@ -116,11 +116,22 @@ void MainWindow::on_backButton_clicked()
 
 
 void MainWindow::on_pushButton_5_clicked() {
-    ui->stackedWidget->setCurrentIndex(1);
-    DriverList *listWidget =new DriverList(this);
-    QVBoxLayout *layout = new QVBoxLayout(ui->tabWidget);
-//    DriverDownloader *jsoninfo=new DriverDownloader(this);
-//    listWidget->infoWidget(jsoninfo->getFilesByDeviceIds());
-    layout->addWidget(listWidget);
-    ui->tab1->setLayout(layout);
+    // 假设在MainWindow类中定义了成员变量 DriverList *driverList;
+
+        ui->stackedWidget->setCurrentIndex(1);
+
+        // 如果之前已经创建了 driverList，则先释放它
+        if (driverList) {
+            delete driverList;
+            driverList = nullptr;
+        }
+
+        // 创建新的 DriverList
+        driverList = new DriverList(this);
+
+        QVBoxLayout *layout = new QVBoxLayout(ui->tabWidget);
+        layout->addWidget(driverList);
+        ui->tab1->setLayout(layout);
+
+
 }

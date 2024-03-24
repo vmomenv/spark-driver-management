@@ -6,6 +6,7 @@
 #include "QMenuBar"
 #include "QMouseEvent"
 #include "driverdownloader.h"
+#include "driverlist.h"
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -36,7 +37,7 @@ private:
     Ui::MainWindow *ui;
     bool isMousePressed;
     QPoint dragPosition;
-
+    DriverList *driverList;
     void mouseMoveEvent(QMouseEvent *event);
     void mousePressEvent(QMouseEvent *event);
 
