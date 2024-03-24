@@ -185,7 +185,7 @@
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -239,7 +239,7 @@
             </property>
             <property name="styleSheet">
              <string notr="true">QLabel {
-    background-image: url(:/res/logo.png);
+    background-image: url(:/res/logo_new.png);
     background-repeat: no-repeat;
     background-position: center;
     border: none; /* 移除边框，以保留图片的样式 */
