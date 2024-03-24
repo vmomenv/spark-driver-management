@@ -13,13 +13,15 @@ SOURCES += \
     mainwindow.cpp \
     deviceinfo.cpp \
     driverdownloader.cpp \
-    driverlist.cpp
+    driverlist.cpp \
+    filedownloader.cpp
 
 HEADERS += \
     mainwindow.h \
     deviceinfo.h \
     driverdownloader.h \
-    driverlist.h
+    driverlist.h \
+    filedownloader.h
 
 FORMS += \
     info.ui \
