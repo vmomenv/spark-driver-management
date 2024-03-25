@@ -15,6 +15,8 @@ public:
     QJsonDocument json;
 //    void infoWidget(const QJsonObject &deviceObject, QWidget *listWidget);
     void infoWidget(const QJsonObject &deviceObject, QVBoxLayout *listLayout);
+private:
+
 signals:
 
 public slots:

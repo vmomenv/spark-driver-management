@@ -116,22 +116,36 @@ void MainWindow::on_backButton_clicked()
 
 
 void MainWindow::on_pushButton_5_clicked() {
-    // 假设在MainWindow类中定义了成员变量 DriverList *driverList;
+    ui->stackedWidget->setCurrentIndex(1);
 
-        ui->stackedWidget->setCurrentIndex(1);
+    // 如果之前已经创建了 driverList，则先释放它
+    if (driverList) {
+        delete driverList;
+        driverList = nullptr;
+    }
+    // 创建新的 DriverList
+    driverList = new DriverList(this);
 
-        // 如果之前已经创建了 driverList，则先释放它
-        if (driverList) {
-            delete driverList;
-            driverList = nullptr;
+    // 检查tab1的布局是否已经存在
+    if (ui->tab1->layout()) {
+        // 如果存在，则删除旧布局
+        QLayoutItem *item;
+        while ((item = ui->tab1->layout()->takeAt(0)) != nullptr) {
+            delete item->widget();
+            delete item;
         }
+    }
 
-        // 创建新的 DriverList
-        driverList = new DriverList(this);
+    // 添加driverList到tab1
+    QVBoxLayout *layout = qobject_cast<QVBoxLayout*>(ui->tab1->layout());
+    if (!layout) {
+        layout = new QVBoxLayout(ui->tab1);
+    }
+    layout->addWidget(driverList);
+}
 
-        QVBoxLayout *layout = new QVBoxLayout(ui->tabWidget);
-        layout->addWidget(driverList);
-        ui->tab1->setLayout(layout);
-
+void MainWindow::on_pushButton_7_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(3);
 
 }
