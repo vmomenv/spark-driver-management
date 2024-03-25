@@ -101,3 +101,22 @@ QJsonDocument DriverDownloader::getFilesByDeviceIds() {
 
     return finalJson;
 }
+QJsonDocument DriverDownloader::getFileByType(QString type) {
+    QNetworkAccessManager manager;
+    QEventLoop loop;
+    QObject::connect(&manager, &QNetworkAccessManager::finished, &loop, &QEventLoop::quit);
+
+    QString url = "http://127.0.0.1:8000/api/FileDisplayByType?driver_type=" + type;
+    QUrl urlObject(url);
+    QNetworkRequest request(urlObject);
+
+
+    QNetworkReply *reply = manager.get(request);
+    loop.exec();
+
+    QByteArray responseData = reply->readAll();
+    reply->deleteLater();
+
+    QJsonDocument jsonDoc = QJsonDocument::fromJson(responseData);
+    return jsonDoc;
+}

@@ -14,6 +14,7 @@ public:
     void executeCommand();
 
     QJsonDocument getFilesByDeviceIds();
+    QJsonDocument getFileByType(QString type);
 private:
     QStringList deviceIDs;
     QJsonArray intermediateJsonArray;

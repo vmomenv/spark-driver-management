@@ -147,5 +147,7 @@ void MainWindow::on_pushButton_5_clicked() {
 void MainWindow::on_pushButton_7_clicked()
 {
     ui->stackedWidget->setCurrentIndex(3);
+    DriverDownloader *w;
+    w->getFileByType("VGA");
 
 }
