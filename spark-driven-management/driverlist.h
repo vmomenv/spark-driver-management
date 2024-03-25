@@ -9,14 +9,15 @@ class DriverList : public QWidget
 {
     Q_OBJECT
 public:
-    explicit DriverList(QWidget *parent = nullptr);
+    explicit DriverList(QString type,QWidget *parent = nullptr);
 
     void infoWidget(QJsonDocument json);
     QJsonDocument json;
 //    void infoWidget(const QJsonObject &deviceObject, QWidget *listWidget);
     void infoWidget(const QJsonObject &deviceObject, QVBoxLayout *listLayout);
+    void requestType(QString type);
 private:
-
+    QJsonDocument tmpJson;
 signals:
 
 public slots:

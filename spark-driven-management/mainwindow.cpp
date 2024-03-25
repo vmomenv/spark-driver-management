@@ -124,7 +124,7 @@ void MainWindow::on_pushButton_5_clicked() {
         driverList = nullptr;
     }
     // 创建新的 DriverList
-    driverList = new DriverList(this);
+    driverList = new DriverList("",this);
 
     // 检查tab1的布局是否已经存在
     if (ui->tab1->layout()) {
@@ -147,7 +147,26 @@ void MainWindow::on_pushButton_5_clicked() {
 void MainWindow::on_pushButton_7_clicked()
 {
     ui->stackedWidget->setCurrentIndex(3);
-    DriverDownloader *w;
-    w->getFileByType("VGA");
+    if (driverList) {
+        delete driverList;
+        driverList = nullptr;
+    }
+    // 创建新的 DriverList
+    driverList = new DriverList("VGA",this);
+    if (ui->tab_4->layout()) {
+        // 如果存在，则删除旧布局
+        QLayoutItem *item;
+        while ((item = ui->tab_4->layout()->takeAt(0)) != nullptr) {
+            delete item->widget();
+            delete item;
+        }
+    }
+
+    //
+    QVBoxLayout *layout = qobject_cast<QVBoxLayout*>(ui->tab_4->layout());
+    if (!layout) {
+        layout = new QVBoxLayout(ui->tab_4);
+    }
+    layout->addWidget(driverList);
 
 }

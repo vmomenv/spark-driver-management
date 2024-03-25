@@ -7,7 +7,7 @@
 #include <QHBoxLayout>
 #include <QSpacerItem>
 
-DriverList::DriverList(QWidget *parent) : QWidget(parent)
+DriverList::DriverList(QString type,QWidget *parent) : QWidget(parent)
 {
     QVBoxLayout *layout = new QVBoxLayout(this);
 
@@ -28,7 +28,11 @@ DriverList::DriverList(QWidget *parent) : QWidget(parent)
     layout->addWidget(mainWidget);
 
     DriverDownloader *jsoninfo = new DriverDownloader(this);
-    QJsonDocument json = jsoninfo->getFilesByDeviceIds();
+    if (type.isEmpty()) {
+        json = jsoninfo->getFilesByDeviceIds();
+    } else {
+        json = jsoninfo->getFileByType(type);
+    }
 
     if (!json.isEmpty()) {
         // Parse the JSON document into smaller JSON objects
@@ -94,3 +98,9 @@ void DriverList::infoWidget(const QJsonObject &deviceObject, QVBoxLayout *listLa
 
     listLayout->addWidget(infoWidget);
 }
+//void DriverList::requestType(QString type){
+//    DriverDownloader *jsoninfo;
+//    if(type==NULL){
+//        this->tmpJson=jsoninfo->getFilesByDeviceIds();
+//    }
+//}

@@ -6,6 +6,7 @@
 #include <QNetworkReply>
 #include <QJsonArray>
 #include<QDebug>
+#include <QJsonDocument>
 class DriverDownloader : public QWidget
 {
     Q_OBJECT
