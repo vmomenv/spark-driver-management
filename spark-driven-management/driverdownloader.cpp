@@ -98,7 +98,7 @@ QJsonDocument DriverDownloader::getFilesByDeviceIds() {
 
     // 将所有 JSON 数据组合成一个大 JSON
     QJsonDocument finalJson(jsonArray);
-
+    qDebug()<<finalJson;
     return finalJson;
 }
 QJsonDocument DriverDownloader::getFileByType(QString type) {
@@ -110,7 +110,6 @@ QJsonDocument DriverDownloader::getFileByType(QString type) {
     QUrl urlObject(url);
     QNetworkRequest request(urlObject);
 
-
     QNetworkReply *reply = manager.get(request);
     loop.exec();
 
@@ -118,5 +117,20 @@ QJsonDocument DriverDownloader::getFileByType(QString type) {
     reply->deleteLater();
 
     QJsonDocument jsonDoc = QJsonDocument::fromJson(responseData);
-    return jsonDoc;
+    qDebug() << jsonDoc;
+
+    QJsonArray jsonArray;
+    if (!jsonDoc.isNull() && (jsonDoc.isObject() || jsonDoc.isArray())) {
+        if (jsonDoc.isArray()) {
+            jsonArray = jsonDoc.array(); // 如果是数组，则直接使用
+        } else {
+            QJsonObject jsonObject = jsonDoc.object();
+            jsonArray.append(jsonObject); // 如果是对象，则添加到数组中
+        }
+    }
+
+    // 将新的 JSON 数组转换为 JSON 文档并返回
+    QJsonDocument finalJson(QJsonArray({jsonArray}));
+    qDebug() << finalJson;
+    return finalJson;
 }

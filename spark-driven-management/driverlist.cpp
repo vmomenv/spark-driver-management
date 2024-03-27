@@ -32,8 +32,8 @@ DriverList::DriverList(QString type,QWidget *parent) : QWidget(parent)
         json = jsoninfo->getFilesByDeviceIds();
     } else {
         json = jsoninfo->getFileByType(type);
+        qDebug()<<json;
     }
-
     if (!json.isEmpty()) {
         // Parse the JSON document into smaller JSON objects
         QJsonArray jsonArray = json.array();

@@ -147,12 +147,16 @@ void MainWindow::on_pushButton_5_clicked() {
 void MainWindow::on_pushButton_7_clicked()
 {
     ui->stackedWidget->setCurrentIndex(3);
+
+    // 如果之前已经创建了 driverList，则先释放它
     if (driverList) {
         delete driverList;
         driverList = nullptr;
     }
     // 创建新的 DriverList
     driverList = new DriverList("VGA",this);
+
+    // 检查tab1的布局是否已经存在
     if (ui->tab_4->layout()) {
         // 如果存在，则删除旧布局
         QLayoutItem *item;
@@ -162,11 +166,11 @@ void MainWindow::on_pushButton_7_clicked()
         }
     }
 
-    //
+    // 添加driverList到tab1
     QVBoxLayout *layout = qobject_cast<QVBoxLayout*>(ui->tab_4->layout());
     if (!layout) {
         layout = new QVBoxLayout(ui->tab_4);
     }
     layout->addWidget(driverList);
-
 }
+
