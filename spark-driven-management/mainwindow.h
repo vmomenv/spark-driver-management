@@ -44,5 +44,6 @@ private:
     void mousePressEvent(QMouseEvent *event);
 
     void mouseReleaseEvent(QMouseEvent *event);
+    void downloadFileByType(int index);
 };
 #endif // MAINWINDOW_H
