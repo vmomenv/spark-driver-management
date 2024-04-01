@@ -64,6 +64,7 @@ void DriverList::infoWidget(const QJsonObject &deviceObject, QVBoxLayout *listLa
     QString fileSize = deviceObject.value("file_size").toString();
     QString packageName = deviceObject.value("package_name").toString();
     QString version = deviceObject.value("version").toString();
+    QString filePath = deviceObject.value("file_path").toString();
 
     QLabel *fileNameLabel = new QLabel("文件名: " + fileName);
     QLabel *fileSizeLabel = new QLabel("文件大小: " + fileSize);
@@ -89,7 +90,8 @@ void DriverList::infoWidget(const QJsonObject &deviceObject, QVBoxLayout *listLa
     QPushButton *downloadButton = new QPushButton("下载");
     downloadButton->setFixedSize(65, 25);
     connect(downloadButton, &QPushButton::clicked, [=]() {
-        qDebug() << "Downloading file from: " << deviceObject.value("file_path").toString();
+        DriverDownloader *download=new DriverDownloader;
+        download->downloadFile(filePath);
     });
     infoWidgetRightLayout->addWidget(downloadButton);
 
