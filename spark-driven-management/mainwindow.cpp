@@ -165,21 +165,22 @@ void MainWindow::downloadFileByType(int index){
     stringList << "VGA" << "Network" << "Audio" << "Camera" << "Printer" << "Kernel";
     qDebug()<<"----------"<<stringList.at(index);
     driverList = new DriverList(stringList.at(index),this);
-
+    QVector<QWidget*> tabWidgets = {ui->tab_4, ui->tab_5,  ui->tab_6, ui->tab_7, ui->tab_8, ui->tab_9};
+    QWidget *tabWidget = tabWidgets[index];
     // 检查tab1的布局是否已经存在
-    if (ui->tab_4->layout()) {
+    if (tabWidget->layout()) {
         // 如果存在，则删除旧布局
         QLayoutItem *item;
-        while ((item = ui->tab_4->layout()->takeAt(0)) != nullptr) {
+        while ((item = tabWidget->layout()->takeAt(0)) != nullptr) {
             delete item->widget();
             delete item;
         }
     }
 
     // 添加driverList到tab1
-    QVBoxLayout *layout = qobject_cast<QVBoxLayout*>(ui->tab_4->layout());
+    QVBoxLayout *layout = qobject_cast<QVBoxLayout*>(tabWidget->layout());
     if (!layout) {
-        layout = new QVBoxLayout(ui->tab_4);
+        layout = new QVBoxLayout(tabWidget);
     }
     layout->addWidget(driverList);
 }
