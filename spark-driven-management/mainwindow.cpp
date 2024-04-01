@@ -184,3 +184,9 @@ void MainWindow::downloadFileByType(int index){
     }
     layout->addWidget(driverList);
 }
+
+void MainWindow::on_pushButton_8_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(4);
+
+}
