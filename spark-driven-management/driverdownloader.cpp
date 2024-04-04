@@ -139,50 +139,5 @@ QJsonDocument DriverDownloader::getFileByType(QString type) {
 }
 void DriverDownloader::downloadFile(const QString &filePath)
 {
-    // 构建下载URL
-    QString baseUrl = "http://127.0.0.1/spark-driver-repo/";
-    QString fileName = QFileInfo(filePath).fileName();
-    QString downloadUrl = baseUrl + fileName + "/" + fileName;
-    qDebug()<<downloadUrl<<"---------";
-    // 创建下载列表widget
-    QDialog *downloadDialog = new QDialog(this);
-    QVBoxLayout *layout = new QVBoxLayout(downloadDialog);
-    QListWidget *downloadListWidget = new QListWidget(downloadDialog);
-    QPushButton *closeButton = new QPushButton("Close", downloadDialog);
 
-    layout->addWidget(downloadListWidget);
-    layout->addWidget(closeButton);
-    downloadDialog->setLayout(layout);
-
-    // 发起下载请求
-    QNetworkAccessManager *manager = new QNetworkAccessManager(this);
-    QNetworkRequest request(downloadUrl);
-    QNetworkReply *reply = manager->get(request);
-
-    // 处理下载响应
-    connect(reply, &QNetworkReply::finished, this, [=]() {
-        if (reply->error() == QNetworkReply::NoError) {
-            QByteArray fileData = reply->readAll();
-
-            // 保存文件到本地（可选）
-            QString saveFilePath = QFileDialog::getSaveFileName(this, tr("Save File"), fileName);
-            QFile file(saveFilePath);
-            if (file.open(QIODevice::WriteOnly)) {
-                file.write(fileData);
-                file.close();
-            }
-
-            // 添加到下载列表
-            downloadListWidget->addItem(fileName + " - Downloaded");
-        } else {
-            // 添加到下载列表
-            downloadListWidget->addItem(fileName + " - Error: " + reply->errorString());
-        }
-
-        // 清理资源
-        reply->deleteLater();
-    });
-
-    // 显示下载列表
-    downloadDialog->exec();
 }

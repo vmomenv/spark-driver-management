@@ -40,6 +40,41 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->tabWidget_3,&QTabWidget::currentChanged, this, &MainWindow::downloadFileByType);
     onStackedWidgetPageChanged(0);
 
+
+    QNetworkAccessManager manager;
+    QEventLoop loop;
+    QObject::connect(&manager, &QNetworkAccessManager::finished, &loop, &QEventLoop::quit);
+
+    QString url = "http://127.0.0.1:8000/serverlist";
+    QUrl urlObject(url);
+    QNetworkRequest request(urlObject);
+
+    QNetworkReply *reply = manager.get(request);
+    loop.exec();
+
+    QByteArray responseData = reply->readAll();
+    QJsonDocument jsonDoc = QJsonDocument::fromJson(responseData);
+    if (!jsonDoc.isNull() && jsonDoc.isObject()) {
+        QJsonObject jsonObj = jsonDoc.object();
+        if (jsonObj.contains("links") && jsonObj["links"].isArray()) {
+            QJsonArray linksArray = jsonObj["links"].toArray();
+            foreach (const QJsonValue &value, linksArray) {
+                if (value.isObject()) {
+                    QJsonObject linkObj = value.toObject();
+                    if (linkObj.contains("name") && linkObj.contains("url")) {
+                        QString name = linkObj["name"].toString();
+                        QString url = linkObj["url"].toString();
+                        // 将数据添加到comboBox中
+                        ui->comboBox->addItem(name, url);
+                    }
+                }
+            }
+        }
+    }
+    reply->deleteLater();
+
+
+
 }
 void MainWindow::onStackedWidgetPageChanged(int currentIndex)
 {
