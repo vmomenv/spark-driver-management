@@ -147,11 +147,14 @@ void DriverDownloader::downloadFile(const QString &filePath)
 
     connect(reply, &QNetworkReply::finished, this, [=]() {
         if (reply->error() == QNetworkReply::NoError) {
-            QFile file("/home/momen/Downloads/" + QFileInfo(filePath).fileName());
+            QString savePath = "/tmp/spark-driver/" + QFileInfo(filePath).fileName();
+            QDir().mkpath("/tmp/spark-driver");
+
+            QFile file(savePath);
             if (file.open(QIODevice::WriteOnly)) {
                 file.write(reply->readAll());
                 file.close();
-                qDebug() << "File downloaded successfully to ~/home/momen/Downloads/";
+                qDebug() << "File downloaded successfully to /tmp/spark-driver/";
             } else {
                 qDebug() << "Error: Unable to open file for writing";
             }
