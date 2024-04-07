@@ -73,8 +73,10 @@ MainWindow::MainWindow(QWidget *parent)
     }
     reply->deleteLater();
 
-
-
+//当combobox发生更改时，将数据传给DriverDownloader
+    connect(ui->comboBox,&QComboBox::currentTextChanged,this,[=]{
+        qDebug()<<ui->comboBox->itemData(ui->comboBox->currentIndex());
+    });
 }
 void MainWindow::onStackedWidgetPageChanged(int currentIndex)
 {

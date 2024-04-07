@@ -139,5 +139,26 @@ QJsonDocument DriverDownloader::getFileByType(QString type) {
 }
 void DriverDownloader::downloadFile(const QString &filePath)
 {
+    QUrl url("http://127.0.0.1:8000" + filePath);
+    QNetworkRequest request(url);
 
+    QNetworkAccessManager *manager = new QNetworkAccessManager(this);
+    QNetworkReply *reply = manager->get(request);
+
+    connect(reply, &QNetworkReply::finished, this, [=]() {
+        if (reply->error() == QNetworkReply::NoError) {
+            QFile file("/home/momen/Downloads/" + QFileInfo(filePath).fileName());
+            if (file.open(QIODevice::WriteOnly)) {
+                file.write(reply->readAll());
+                file.close();
+                qDebug() << "File downloaded successfully to ~/home/momen/Downloads/";
+            } else {
+                qDebug() << "Error: Unable to open file for writing";
+            }
+        } else {
+            qDebug() << "Error:" << reply->errorString();
+        }
+        reply->deleteLater();
+        manager->deleteLater();
+    });
 }
