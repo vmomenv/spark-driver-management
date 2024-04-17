@@ -17,6 +17,7 @@ public:
     QJsonDocument getFilesByDeviceIds();
     QJsonDocument getFileByType(QString type);
     void downloadFile(const QString &filePath);
+    void downloadWidget();
 private:
     QStringList deviceIDs;
     QJsonArray intermediateJsonArray;

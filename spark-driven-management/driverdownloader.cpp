@@ -1,6 +1,5 @@
 #include "driverdownloader.h"
-#include "driverdownloader.h"
-
+#include "downloadwidget.h"
 #include <QEventLoop>
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -18,6 +17,8 @@
 DriverDownloader::DriverDownloader(QWidget *parent) : QWidget(parent)
 {
     executeCommand();
+}
+void DriverDownloader::downloadWidget(){
 }
 void DriverDownloader::executeCommand()
 {
@@ -139,6 +140,11 @@ QJsonDocument DriverDownloader::getFileByType(QString type) {
 }
 void DriverDownloader::downloadFile(const QString &filePath)
 {
+    // 创建下载器 widget，并设置为模态对话框
+    DownloadWidget *downloadWidget = new DownloadWidget(filePath, this);
+    downloadWidget->setWindowModality(Qt::ApplicationModal);
+    downloadWidget->show();
+
     QUrl url("http://127.0.0.1:8000" + filePath);
     QNetworkRequest request(url);
 
@@ -155,13 +161,19 @@ void DriverDownloader::downloadFile(const QString &filePath)
                 file.write(reply->readAll());
                 file.close();
                 qDebug() << "File downloaded successfully to /tmp/spark-driver/";
+                downloadWidget->setDownloadStatus("Downloaded");
             } else {
                 qDebug() << "Error: Unable to open file for writing";
+                downloadWidget->setDownloadStatus("Error");
             }
         } else {
             qDebug() << "Error:" << reply->errorString();
+            downloadWidget->setDownloadStatus("Error");
         }
         reply->deleteLater();
         manager->deleteLater();
+
+        // 下载完成后关闭窗口
+        downloadWidget->close();
     });
 }
