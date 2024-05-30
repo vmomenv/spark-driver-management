@@ -1,0 +1,28 @@
+{
+	"BUILD_DIR" : "/home/momen/Desktop/spark-driver-management/build/sakura-assistant_autogen",
+	"CMAKE_BINARY_DIR" : "/home/momen/Desktop/spark-driver-management/build",
+	"CMAKE_CURRENT_BINARY_DIR" : "/home/momen/Desktop/spark-driver-management/build",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/home/momen/Desktop/spark-driver-management",
+	"CMAKE_SOURCE_DIR" : "/home/momen/Desktop/spark-driver-management",
+	"INCLUDE_DIR" : "/home/momen/Desktop/spark-driver-management/build/sakura-assistant_autogen/include",
+	"INPUTS" : 
+	[
+		"/home/momen/Desktop/spark-driver-management/src/spark-driver-management/res/logo_new.png",
+		"/home/momen/Desktop/spark-driver-management/src/spark-driver-management/res/logo_blue.png",
+		"/home/momen/Desktop/spark-driver-management/src/spark-driver-management/res/information.png",
+		"/home/momen/Desktop/spark-driver-management/src/spark-driver-management/res/logo.png",
+		"/home/momen/Desktop/spark-driver-management/src/spark-driver-management/res/search.png",
+		"/home/momen/Desktop/spark-driver-management/src/spark-driver-management/res/drivelist.png",
+		"/home/momen/Desktop/spark-driver-management/src/spark-driver-management/res/setting.svg"
+	],
+	"LOCK_FILE" : "/home/momen/Desktop/spark-driver-management/build/CMakeFiles/sakura-assistant_autogen.dir/AutoRcc_res_G3FG3HJOET_Lock.lock",
+	"MULTI_CONFIG" : false,
+	"OPTIONS" : [ "-name", "res" ],
+	"OUTPUT_CHECKSUM" : "G3FG3HJOET",
+	"OUTPUT_NAME" : "qrc_res.cpp",
+	"RCC_EXECUTABLE" : "/usr/lib/qt5/bin/rcc",
+	"RCC_LIST_OPTIONS" : [ "--list" ],
+	"SETTINGS_FILE" : "/home/momen/Desktop/spark-driver-management/build/CMakeFiles/sakura-assistant_autogen.dir/AutoRcc_res_G3FG3HJOET_Used.txt",
+	"SOURCE" : "/home/momen/Desktop/spark-driver-management/src/spark-driver-management/res.qrc",
+	"VERBOSITY" : 0
+}

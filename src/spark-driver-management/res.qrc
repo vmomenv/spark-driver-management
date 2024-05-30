@@ -5,5 +5,7 @@
         <file>res/information.png</file>
         <file>res/search.png</file>
         <file>res/logo.png</file>
+        <file>res/logo_blue.png</file>
+        <file>res/logo_new.png</file>
     </qresource>
 </RCC>

@@ -1,0 +1,16 @@
+# ninja log v5
+0	214	1713859156013415914	sakura-assistant_autogen/timestamp	b11d79e82f1f64c0
+0	214	1713859156013415914	sakura-assistant_autogen/mocs_compilation.cpp	b11d79e82f1f64c0
+0	214	1713859156013415914	/home/momen/Desktop/spark-driver-management/build/sakura-assistant_autogen/timestamp	b11d79e82f1f64c0
+0	214	1713859156013415914	/home/momen/Desktop/spark-driver-management/build/sakura-assistant_autogen/mocs_compilation.cpp	b11d79e82f1f64c0
+214	232	1713859156045416171	sakura-assistant_autogen/G3FG3HJOET/qrc_res.cpp	3898cc207ef5476a
+214	232	1713859156045416171	/home/momen/Desktop/spark-driver-management/build/sakura-assistant_autogen/G3FG3HJOET/qrc_res.cpp	3898cc207ef5476a
+234	307	1713859156121416781	CMakeFiles/sakura-assistant.dir/sakura-assistant_autogen/G3FG3HJOET/qrc_res.cpp.o	a032477bf43d585a
+233	1327	1713859157137424937	CMakeFiles/sakura-assistant.dir/src/spark-driver-management/deviceinfo.cpp.o	78adb3bfd275db15
+233	1452	1713859157265425966	CMakeFiles/sakura-assistant.dir/src/spark-driver-management/downloadwidget.cpp.o	8d562b364441f1ac
+234	1880	1713859157693429407	CMakeFiles/sakura-assistant.dir/src/spark-driver-management/main.cpp.o	ea4324e79b5f63e8
+232	1907	1713859157721429632	CMakeFiles/sakura-assistant.dir/sakura-assistant_autogen/mocs_compilation.cpp.o	a4d7b1f9448a41a0
+233	1940	1713859157753429890	CMakeFiles/sakura-assistant.dir/src/spark-driver-management/driverlist.cpp.o	a3590de9f4de2a29
+233	2190	1713859158001431884	CMakeFiles/sakura-assistant.dir/src/spark-driver-management/driverdownloader.cpp.o	926dd4e720610338
+234	2273	1713859158085432560	CMakeFiles/sakura-assistant.dir/src/spark-driver-management/mainwindow.cpp.o	1bfbbf7e1368ef82
+2273	2703	1713859158513436008	sakura-assistant	b3996e1fbb6d528f

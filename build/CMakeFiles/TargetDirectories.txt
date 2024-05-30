@@ -1,0 +1,12 @@
+/home/momen/Desktop/spark-driver-management/build/CMakeFiles/sakura-assistant.dir
+/home/momen/Desktop/spark-driver-management/build/CMakeFiles/builddeps.dir
+/home/momen/Desktop/spark-driver-management/build/CMakeFiles/package.dir
+/home/momen/Desktop/spark-driver-management/build/CMakeFiles/package_source.dir
+/home/momen/Desktop/spark-driver-management/build/CMakeFiles/edit_cache.dir
+/home/momen/Desktop/spark-driver-management/build/CMakeFiles/rebuild_cache.dir
+/home/momen/Desktop/spark-driver-management/build/CMakeFiles/list_install_components.dir
+/home/momen/Desktop/spark-driver-management/build/CMakeFiles/install.dir
+/home/momen/Desktop/spark-driver-management/build/CMakeFiles/install/local.dir
+/home/momen/Desktop/spark-driver-management/build/CMakeFiles/install/strip.dir
+/home/momen/Desktop/spark-driver-management/build/CMakeFiles/sakura-assistant_autogen_timestamp_deps.dir
+/home/momen/Desktop/spark-driver-management/build/CMakeFiles/sakura-assistant_autogen.dir
