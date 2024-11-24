@@ -14,6 +14,7 @@
 #include <QFileInfo>
 #include <QDialog>
 #include <QFileDialog>
+#include <QRegularExpression>
 DriverDownloader::DriverDownloader(QWidget *parent) : QWidget(parent)
 {
     executeCommand();
@@ -37,16 +38,19 @@ void DriverDownloader::executeCommand()
 
     // 从进程中读取输出
     QString result = process.readAllStandardOutput();
-    qDebug()<<result;    // 使用正则表达式提取设备ID
-    QRegExp regex("\\[(\\w+):(\\w+)\\]");
-    int pos = 0;
-    while ((pos = regex.indexIn(result, pos)) != -1) {
-        deviceIDs << regex.cap(1) + ":" + regex.cap(2);
-        pos += regex.matchedLength();
+    qDebug() << result;    // 使用正则表达式提取设备ID
+
+    // 使用 QRegularExpression 替代 QRegExp
+    QRegularExpression regex("\\[(\\w+):(\\w+)\\]");
+    QRegularExpressionMatchIterator i = regex.globalMatch(result);
+
+    // 提取所有匹配的设备ID
+    while (i.hasNext()) {
+        QRegularExpressionMatch match = i.next();
+        deviceIDs << match.captured(1) + ":" + match.captured(2);
     }
-    qDebug()<<deviceIDs;
 
-
+    qDebug() << deviceIDs;
 }
 
 QJsonDocument DriverDownloader::getFilesByDeviceIds() {
