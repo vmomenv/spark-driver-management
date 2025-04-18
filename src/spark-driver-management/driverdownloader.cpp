@@ -64,7 +64,7 @@ QJsonDocument DriverDownloader::getFilesByDeviceIds() {
 
     // 构建请求的 URL
     auto buildRequestUrl = [](const QString &deviceID) -> QUrl {
-        QUrl url("http://127.0.0.1:8000/api/FindFilesByHardwareId");
+        QUrl url("https://drivers.momen.world/api/FindFilesByHardwareId");
         QUrlQuery query;
         query.addQueryItem("driver_type", "pci");
         query.addQueryItem("device_id", deviceID);
@@ -114,7 +114,7 @@ QJsonDocument DriverDownloader::getFileByType(QString type) {
     QEventLoop loop;
     QObject::connect(&manager, &QNetworkAccessManager::finished, &loop, &QEventLoop::quit);
 
-    QString url = "http://127.0.0.1:8000/api/FileDisplayByType?driver_type=" + type;
+    QString url = "https://drivers.momen.world/api/FileDisplayByType?driver_type=" + type;
     QUrl urlObject(url);
     QNetworkRequest request(urlObject);
 
@@ -149,7 +149,7 @@ void DriverDownloader::downloadFile(const QString &filePath)
     downloadWidget->setWindowModality(Qt::ApplicationModal);
     downloadWidget->show();
 
-    QUrl url("http://127.0.0.1:8000" + filePath);
+    QUrl url("https://drivers.momen.world" + filePath);
     QNetworkRequest request(url);
 
     QNetworkAccessManager *manager = new QNetworkAccessManager(this);

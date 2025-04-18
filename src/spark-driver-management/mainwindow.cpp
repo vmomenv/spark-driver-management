@@ -57,7 +57,7 @@ MainWindow::MainWindow(QWidget *parent)
     QEventLoop loop;
     QObject::connect(&manager, &QNetworkAccessManager::finished, &loop, &QEventLoop::quit);
 
-    QString url = "http://127.0.0.1:8000/serverlist";
+    QString url = "https://drivers.momen.world/serverlist";
     QUrl urlObject(url);
     QNetworkRequest request(urlObject);
 
@@ -171,10 +171,10 @@ void MainWindow::on_pushButton_5_clicked()
     ui->stackedWidget->setCurrentIndex(1);
 
     // 如果之前已经创建了 driverList，则先释放它
-    if (driverList) {
-        delete driverList;
-        driverList = nullptr;
-    }
+    // if (driverList) {
+    //     delete driverList;
+    //     driverList = nullptr;
+    // }
 
     // 创建新的 DriverList
     driverList = new DriverList("", this);
