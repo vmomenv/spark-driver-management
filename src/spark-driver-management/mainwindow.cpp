@@ -207,11 +207,11 @@ void MainWindow::downloadFileByType(int index)
 {
     qDebug() << index;
 
-    // 如果之前已经创建了 driverList，则先释放它
-    if (driverList) {
-        delete driverList;
-        driverList = nullptr;
-    }
+    // // 如果之前已经创建了 driverList，则先释放它
+    // if (driverList) {
+    //     delete driverList;
+    //     driverList = nullptr;
+    // }
 
     // 创建新的 DriverList
     QStringList stringList;
