@@ -57,7 +57,7 @@ MainWindow::MainWindow(QWidget *parent)
     QEventLoop loop;
     QObject::connect(&manager, &QNetworkAccessManager::finished, &loop, &QEventLoop::quit);
 
-    QString url = "https://drivers.momen.world/serverlist";
+    QString url = "https://drivers.momen.world/api/serverlist";
     QUrl urlObject(url);
     QNetworkRequest request(urlObject);
 
