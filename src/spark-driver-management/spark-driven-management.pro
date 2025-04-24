@@ -24,6 +24,7 @@ HEADERS += \
     downloadwidget.h
 
 FORMS += \
+    download.ui \
     info.ui \
     mainwindow.ui
 
