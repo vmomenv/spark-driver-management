@@ -11,7 +11,7 @@
 #include <QPalette>
 #include <QJsonArray>
 #include <QUrlQuery>
-
+#include <QScreen>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
