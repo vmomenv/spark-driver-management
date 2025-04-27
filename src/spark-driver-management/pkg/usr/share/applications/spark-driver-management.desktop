@@ -1,0 +1,16 @@
+[Desktop Entry]
+Categories=Application;
+Comment=spark-driver-management
+Comment[zh_CN]=星火驱动管理
+Exec=/usr/bin/spark-driver-management %F
+GenericName=spark-driver-management
+GenericName[zh_CN]=星火驱动管理
+Icon=spark-driver-management
+Name=spark-driver-management
+Name[zh_CN]=星火驱动管理
+StartupNotify=false
+Terminal=false
+Type=Application
+Version=1.0.0.2
+X-Deepin-ManualID=spark-driver-management
+X-Deepin-Vendor=user-custom
