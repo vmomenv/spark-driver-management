@@ -40,6 +40,8 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void on_downloadWidgetbutton_clicked();
+
 private:
     Ui::MainWindow *ui;
     bool isMousePressed;
