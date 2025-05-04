@@ -8,7 +8,8 @@ QString DeviceInfo::scanHardwareInfo()
 {
     QProcess process;
 //    process.start("hwinfo --short");
-    process.start("lspci -nn");
+    process.start("/usr/bin/lspci", QStringList() << "-nn");
     process.waitForFinished();
+    qDebug()<<process.readAllStandardOutput();
     return process.readAllStandardOutput();
 }
