@@ -10,6 +10,6 @@ QString DeviceInfo::scanHardwareInfo()
 //    process.start("hwinfo --short");
     process.start("/usr/bin/lspci", QStringList() << "-nn");
     process.waitForFinished();
-    qDebug()<<process.readAllStandardOutput();
+    // qDebug()<<process.readAllStandardOutput();
     return process.readAllStandardOutput();
 }
