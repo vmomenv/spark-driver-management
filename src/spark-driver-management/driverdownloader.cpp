@@ -144,40 +144,35 @@ QJsonDocument DriverDownloader::getFileByType(QString type) {
 }
 void DriverDownloader::downloadFile(const QString &filePath)
 {
-    // 创建下载器 widget，并设置为模态对话框
-    DownloadWidget *downloadWidget = new DownloadWidget(filePath, this);
-    downloadWidget->setWindowModality(Qt::ApplicationModal);
+    QString fileName = QFileInfo(filePath).fileName();
+    DownloadWidget *downloadWidget = new DownloadWidget(filePath);
     downloadWidget->show();
 
     QUrl url("https://drivers.momen.world" + filePath);
     QNetworkRequest request(url);
-
     QNetworkAccessManager *manager = new QNetworkAccessManager(this);
     QNetworkReply *reply = manager->get(request);
 
-    connect(reply, &QNetworkReply::finished, this, [=]() {
-        if (reply->error() == QNetworkReply::NoError) {
-            QString savePath = "/tmp/spark-driver/" + QFileInfo(filePath).fileName();
-            QDir().mkpath("/tmp/spark-driver");
+    connect(reply, &QNetworkReply::downloadProgress,
+            downloadWidget, &DownloadWidget::updateProgress);
 
-            QFile file(savePath);
+    connect(reply, &QNetworkReply::finished, [=]() {
+        QString fullPath = downloadWidget->getSavePath() + fileName; // 现在可以访问了
+
+        if (reply->error() == QNetworkReply::NoError) {
+            QFile file(fullPath);
             if (file.open(QIODevice::WriteOnly)) {
                 file.write(reply->readAll());
                 file.close();
-                qDebug() << "File downloaded successfully to /tmp/spark-driver/";
-                downloadWidget->setDownloadStatus("Downloaded");
+                downloadWidget->setDownloadStatus("下载完成");
             } else {
-                qDebug() << "Error: Unable to open file for writing";
-                downloadWidget->setDownloadStatus("Error");
+                downloadWidget->setDownloadStatus("保存失败: " + file.errorString());
             }
         } else {
-            qDebug() << "Error:" << reply->errorString();
-            downloadWidget->setDownloadStatus("Error");
+            downloadWidget->setDownloadStatus("下载失败: " + reply->errorString());
         }
+
         reply->deleteLater();
         manager->deleteLater();
-
-        // 下载完成后关闭窗口
-        downloadWidget->close();
     });
 }
