@@ -18,6 +18,7 @@
 DriverDownloader::DriverDownloader(QWidget *parent) : QWidget(parent)
 {
     executeCommand();
+    QDir().mkpath("/tmp/spark-driver");
 }
 void DriverDownloader::downloadWidget(){
 }
@@ -145,6 +146,7 @@ QJsonDocument DriverDownloader::getFileByType(QString type) {
 void DriverDownloader::downloadFile(const QString &filePath)
 {
     QString fileName = QFileInfo(filePath).fileName();
+    QString fullPath = "/tmp/spark-driver/" + fileName;
     DownloadWidget *downloadWidget = new DownloadWidget(filePath);
     downloadWidget->show();
 
@@ -152,7 +154,7 @@ void DriverDownloader::downloadFile(const QString &filePath)
     QNetworkRequest request(url);
     QNetworkAccessManager *manager = new QNetworkAccessManager(this);
     QNetworkReply *reply = manager->get(request);
-
+    qDebug()<<"!!!!!!!!!!"<<url;
     connect(reply, &QNetworkReply::downloadProgress,
             downloadWidget, &DownloadWidget::updateProgress);
 

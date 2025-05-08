@@ -11,7 +11,7 @@ public:
     explicit DownloadWidget(const QString &url, QWidget *parent = nullptr);
     void updateProgress(qint64 bytesReceived, qint64 bytesTotal);
     void setDownloadStatus(const QString &status);
-    QString getSavePath() const { return savePath; }
+    QString getSavePath() const { return "/tmp/spark-driver/"; }
 private slots:
     void openDownloadDir();
 

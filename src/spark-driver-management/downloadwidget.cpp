@@ -27,7 +27,7 @@ DownloadWidget::DownloadWidget(const QString &url, QWidget *parent)
     layout->addWidget(openBtn);
 
     // 设置默认保存路径
-    savePath = QStandardPaths::writableLocation(QStandardPaths::DownloadLocation) + "/spark-driver/";
+    savePath = "/tmp/spark-driver";
     QDir().mkpath(savePath);
 }
 
