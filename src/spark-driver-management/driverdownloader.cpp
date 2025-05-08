@@ -150,7 +150,7 @@ void DriverDownloader::downloadFile(const QString &filePath)
     DownloadWidget *downloadWidget = new DownloadWidget(filePath);
     downloadWidget->show();
 
-    QUrl url("https://drivers.momen.world" + filePath);
+    QUrl url("https://drivers.momen.world/api/" + filePath);
     QNetworkRequest request(url);
     QNetworkAccessManager *manager = new QNetworkAccessManager(this);
     QNetworkReply *reply = manager->get(request);
