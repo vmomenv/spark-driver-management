@@ -3,6 +3,7 @@
 #include <QDir>
 #include <QPushButton>
 #include <QStandardPaths>
+#include <QUrl>
 #include <QVBoxLayout>
 
 DownloadWidget::DownloadWidget(const QString &url, QWidget *parent)
