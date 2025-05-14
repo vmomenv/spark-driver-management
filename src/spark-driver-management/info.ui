@@ -19,7 +19,7 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -30,7 +30,7 @@
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
     <property name="sizeConstraint">
-     <enum>QLayout::SetDefaultConstraint</enum>
+     <enum>QLayout::SizeConstraint::SetDefaultConstraint</enum>
     </property>
     <property name="rightMargin">
      <number>0</number>
@@ -61,7 +61,6 @@
         <property name="font">
          <font>
           <pointsize>11</pointsize>
-          <weight>75</weight>
           <bold>true</bold>
          </font>
         </property>
@@ -89,7 +88,7 @@
     <item>
      <spacer name="horizontalSpacer">
       <property name="orientation">
-       <enum>Qt::Horizontal</enum>
+       <enum>Qt::Orientation::Horizontal</enum>
       </property>
       <property name="sizeHint" stdset="0">
        <size>

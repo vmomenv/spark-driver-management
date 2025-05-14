@@ -232,7 +232,6 @@ void MainWindow::downloadFileByType(int index)
         }
     }
 
-    // 添加driverList到tab1
     QVBoxLayout *layout = qobject_cast<QVBoxLayout *>(tabWidget->layout());
     if (!layout) {
         layout = new QVBoxLayout(tabWidget);
