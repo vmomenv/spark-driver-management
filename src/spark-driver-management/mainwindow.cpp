@@ -222,7 +222,7 @@ void MainWindow::downloadFileByType(int index)
     QVector<QWidget *> tabWidgets = {ui->tab_4, ui->tab_5, ui->tab_6, ui->tab_7, ui->tab_8, ui->tab_9};
     QWidget *tabWidget = tabWidgets[index];
 
-    // 检查tab1的布局是否已经存在
+    // 检查tabwidget的布局是否已经存在
     if (tabWidget->layout()) {
         // 如果存在，则删除旧布局
         QLayoutItem *item;
