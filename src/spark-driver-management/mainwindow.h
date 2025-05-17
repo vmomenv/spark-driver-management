@@ -5,9 +5,7 @@
 #include "QDebug"
 #include "QMenuBar"
 #include "QMouseEvent"
-#include "driverdownloader.h"
 #include "driverlist.h"
-#include "downloadwidget.h"
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
