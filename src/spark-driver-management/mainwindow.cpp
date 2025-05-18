@@ -252,11 +252,6 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::on_downloadWidgetbutton_clicked()
 {
-    if (!downloadDialog) {
-        downloadDialog = new DownloadDialog(this);
-    }
-    downloadDialog->show();
-    downloadDialog->raise();
-    downloadDialog->activateWindow();
+
 }
 

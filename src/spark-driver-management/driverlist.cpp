@@ -1,4 +1,3 @@
-#include "driverdownloader.h"
 #include "driverlist.h"
 
 #include <QLabel>

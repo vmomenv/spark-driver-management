@@ -50,6 +50,5 @@ private:
 
     void mouseReleaseEvent(QMouseEvent *event);
     void downloadFileByType(int index);
-    DownloadWidget *downloadwidget;
 };
 #endif // MAINWINDOW_H
