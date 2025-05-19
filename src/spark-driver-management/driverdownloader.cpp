@@ -147,33 +147,35 @@ void DriverDownloader::downloadFile(const QString &filePath)
 {
     QString fileName = QFileInfo(filePath).fileName();
     QString fullPath = "/tmp/spark-driver/" + fileName;
-    DownloadWidget *downloadWidget = new DownloadWidget(filePath);
-    downloadWidget->show();
+
+    // 使用 DownloadWidget 单例
+    DownloadWidget *downloadWidget = DownloadWidget::instance();
+    downloadWidget->addDownloadTask(fileName);
+    DownloadTaskWidget *taskWidget = downloadWidget->getTaskWidget(fileName);
 
     QUrl url("https://drivers.momen.world/api/" + filePath);
     QNetworkRequest request(url);
     QNetworkAccessManager *manager = new QNetworkAccessManager(this);
     QNetworkReply *reply = manager->get(request);
     qDebug()<<"!!!!!!!!!!"<<url;
+
     connect(reply, &QNetworkReply::downloadProgress,
-            downloadWidget, &DownloadWidget::updateProgress);
+            taskWidget, &DownloadTaskWidget::updateProgress);
 
     connect(reply, &QNetworkReply::finished, [=]() {
-        QString fullPath = downloadWidget->getSavePath() + fileName; // 现在可以访问了
-
+        QString savePath = downloadWidget->getSavePath() + fileName;
         if (reply->error() == QNetworkReply::NoError) {
-            QFile file(fullPath);
+            QFile file(savePath);
             if (file.open(QIODevice::WriteOnly)) {
                 file.write(reply->readAll());
                 file.close();
-                downloadWidget->setDownloadStatus("下载完成");
+                taskWidget->setDownloadStatus("下载完成");
             } else {
-                downloadWidget->setDownloadStatus("保存失败: " + file.errorString());
+                taskWidget->setDownloadStatus("保存失败: " + file.errorString());
             }
         } else {
-            downloadWidget->setDownloadStatus("下载失败: " + reply->errorString());
+            taskWidget->setDownloadStatus("下载失败: " + reply->errorString());
         }
-
         reply->deleteLater();
         manager->deleteLater();
     });
