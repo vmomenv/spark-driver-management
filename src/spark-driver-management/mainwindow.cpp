@@ -252,6 +252,6 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::on_downloadWidgetbutton_clicked()
 {
-
+    DownloadWidget::instance();
 }
 
