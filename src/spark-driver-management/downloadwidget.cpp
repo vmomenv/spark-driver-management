@@ -5,6 +5,8 @@
 #include <QStandardPaths>
 #include <QUrl>
 #include <QVBoxLayout>
+#include <QApplication>
+#include <QScreen>
 
 DownloadWidget* DownloadWidget::m_instance = nullptr;
 
@@ -23,6 +25,12 @@ DownloadWidget::DownloadWidget(QWidget *parent)
 {
     setWindowTitle("下载管理器");
     setFixedSize(420, 500);
+
+    // 居中显示窗口
+    QRect screenGeometry = QApplication::primaryScreen()->geometry();
+    int x = (screenGeometry.width() - width()) / 2;
+    int y = (screenGeometry.height() - height()) / 2;
+    move(x, y);
 
     mainLayout = new QVBoxLayout(this);
 
