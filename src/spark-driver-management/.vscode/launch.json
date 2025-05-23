@@ -18,7 +18,8 @@
           "text": "-enable-pretty-printing",
           "ignoreFailures": true
         }
-      ]
+      ],
+      "visualizerFile": "/home/momen/.config/Code/User/workspaceStorage/3e6ab0712e370157b0ecaaaaa4bd126c/tonka3000.qtvsctools/qt.natvis.xml"
     }
   ]
 }
