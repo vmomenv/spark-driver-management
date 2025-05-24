@@ -12,6 +12,7 @@
 #include <QJsonArray>
 #include <QUrlQuery>
 #include <QScreen>
+#include <QScrollArea>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -171,14 +172,16 @@ void MainWindow::on_pushButton_5_clicked()
     ui->stackedWidget->setCurrentIndex(1);
 
     // 如果之前已经创建了 driverList，则先释放它
-    // if (driverList) {
-    //     delete driverList;
-    //     driverList = nullptr;
-    // }
+    if (driverList) {
+        delete driverList;
+        driverList = nullptr;
+    }
 
     // 创建新的 DriverList
     driverList = new DriverList("", this);
-
+    QScrollArea *scrollArea = new QScrollArea(ui->tab1);
+    scrollArea->setWidgetResizable(true);
+    scrollArea->setWidget(driverList);
     // 检查tab1的布局是否已经存在
     if (ui->tab1->layout()) {
         // 如果存在，则删除旧布局
@@ -194,7 +197,7 @@ void MainWindow::on_pushButton_5_clicked()
     if (!layout) {
         layout = new QVBoxLayout(ui->tab1);
     }
-    layout->addWidget(driverList);
+    layout->addWidget(scrollArea);
 }
 
 void MainWindow::on_pushButton_7_clicked()
@@ -231,12 +234,15 @@ void MainWindow::downloadFileByType(int index)
             delete item;
         }
     }
-
+    // 创建 QScrollArea 并设置 driverList 为其子组件
+    QScrollArea *scrollArea = new QScrollArea(tabWidget);
+    scrollArea->setWidgetResizable(true);
+    scrollArea->setWidget(driverList);
     QVBoxLayout *layout = qobject_cast<QVBoxLayout *>(tabWidget->layout());
     if (!layout) {
         layout = new QVBoxLayout(tabWidget);
     }
-    layout->addWidget(driverList);
+    layout->addWidget(scrollArea);
 }
 
 void MainWindow::on_pushButton_8_clicked()
